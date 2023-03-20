@@ -1,5 +1,5 @@
 <h3>
-  Fornecedor
+    Fornecedor
 </h3>
 
 {{ 'Podemos usar essa forma para aplicar um código dentro do blade, como:' }}
@@ -10,13 +10,13 @@
 {{-- Caso queira implementar um código php no blade, podemos fazer dessa forma: --}}
 @php
 
-  // Comentário de uma linha
+    // Comentário de uma linha
 
-  /*
-    Comentário de várias linhas
-    foo bar
-  */
+    /*
+  Comentário de várias linhas
+  foo bar
+*/
 
-  echo "Texto usando o 'echo' do php puro"
+    echo "Texto usando o 'echo' do php puro";
 
 @endphp
