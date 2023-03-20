@@ -15,8 +15,8 @@
     </a>
   </li>
   <li>
-    <a href='/contato'>
-      Contanto
+    <a href="{{ route('site.contato') }}">
+      Contato
     </a>
   </li>
 </ul>
