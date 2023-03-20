@@ -5,17 +5,17 @@
 <!-- Definindo rotas de navegação -->
 <ul>
   <li>
-    <a href='/'>
+    <a href="{{ route('site.main') }}">
       Principal
     </a>
   </li>
   <li>
-    <a href='/sobre'>
+    <a href="{{ route('site.about') }}">
       Sobre
     </a>
   </li>
   <li>
-    <a href="{{ route('site.contato') }}">
+    <a href="{{ route('site.contact') }}">
       Contato
     </a>
   </li>

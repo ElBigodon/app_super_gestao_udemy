@@ -13,36 +13,48 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/* Essa são as rotas principais do projeto, nas quais a aula se baseia*/
-Route::get('/', 'App\Http\Controllers\MainController@main');
+/** Essa são as rotas principais do projeto, nas quais a aula se baseia
+  *
+  * Usando método `name()` é possível declarar nomenclatura para cada rota, assim não dependendo da URL
+  * Para gerir as rotas
+  */
+Route::get('/', 'App\Http\Controllers\MainController@main')->name('site.main');
 
-Route::get('/sobre', 'App\Http\Controllers\AboutController@about');
+Route::get('/sobre', 'App\Http\Controllers\AboutController@about')->name('site.about');
 
-Route::get('/contato', 'App\Http\Controllers\ContactController@contact');
+Route::get('/contato', 'App\Http\Controllers\ContactController@contact')->name('site.contact');
+
+Route::get(
+  '/login',
+  function () {
+
+  }
+)->name('site.login');
 
 
 // Agrupando rotas usando um prefixo.
 Route::prefix('/app')->group(function () {
 
-  Route::get('/login', function () {
+  Route::get(
+    '/clientes',
+    function () {
 
-  }
-  );
+    }
+  )->name('app.clients');
 
-  Route::get('/clientes', function () {
+  Route::get(
+    '/fornecedores',
+    function () {
 
-  }
-  );
+    }
+  )->name('app.providers');
 
-  Route::get('/fornecedores', function () {
+  Route::get(
+    '/produtos',
+    function () {
 
-  }
-  );
-
-  Route::get('/produtos', function () {
-
-  }
-  );
+    }
+  )->name('app.products');
 });
 
 
