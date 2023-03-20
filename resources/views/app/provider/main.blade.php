@@ -32,15 +32,19 @@
   não há fornecedores cadastrados
 @endif --}}
 
-{{-- @if (condição) // executa se condição for verdadeira  --}}
-{{-- @unless inverte a condição de cima, tratando a condição se for falsa --}}
 {{--
-  Não imagino um cenário na qual o @if seja passado caso eu queira pegar o valor falso da variável
-  Ou eu passo o @if ou @unless
- --}}
-@if($providers[0]['status'] == true)
+
+@if (condição) // executa se condição for verdadeira
+@unless inverte a condição de cima, tratando a condição se for falsa
+
+Não imagino um cenário na qual o @if seja passado caso eu queira pegar o valor falso da variável
+Ou eu passo o @if ou @unless
+
+@if ($providers[0]['status'] == true)
   ativo
 @endif
-@unless ($providers[0]['status'] == true)
+@unless($providers[0]['status'] == true)
   inativo
 @endunless
+
+--}}
