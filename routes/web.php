@@ -14,10 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 /** Essa são as rotas principais do projeto, nas quais a aula se baseia
-  *
-  * Usando método `name()` é possível declarar nomenclatura para cada rota, assim não dependendo da URL
-  * Para gerir as rotas
-  */
+ *
+ * Usando método `name()` é possível declarar nomenclatura para cada rota, assim não dependendo da URL
+ * Para gerir as rotas */
 Route::get('/', 'App\Http\Controllers\MainController@main')->name('site.main');
 
 Route::get('/sobre', 'App\Http\Controllers\AboutController@about')->name('site.about');
@@ -57,6 +56,21 @@ Route::prefix('/app')->group(function () {
   )->name('app.products');
 });
 
+/* Aplicando re-direcionamento de rota
+ * Caso o usuário acesse a rota2, ele será redirecionado para a rota1. */
+Route::get(
+  '/rota1',
+  function () {
+    echo 'rota1';
+  }
+)->name('site.rota1');
+
+Route::get(
+  '/rota2',
+  function () {
+    return redirect()->route('site.rota1');
+  }
+)->name('site.rota2');
 
 /**
  * Essa rota terá 4 parametros, sendo elas:
