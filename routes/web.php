@@ -65,17 +65,20 @@ Route::get(
   }
 )->name('site.rota1');
 
-Route::get(
-  '/rota2',
-  function () {
-    return redirect()->route('site.rota1');
-  }
-)->name('site.rota2');
+// Route::get(
+//   '/rota2',
+//   function () {
+//     return redirect()->route('site.rota1');
+//   }
+// )->name('site.rota2');
 
 /** Usando a função fallback, caso a rota não existe, aparecera uma mensagem avisando que essa rota não existe. */
-Route::fallback(function () {
-  echo 'A rota acessada não existe. <a href="' . route("site.main") . '">Clique aqui</a> para acessar a página principal';
-});
+// Route::fallback(function () {
+//   echo 'A rota acessada não existe. <a href="' . route("site.main") . '">Clique aqui</a> para acessar a página principal';
+// });
+
+// Encaminhando Paramêtros para o controllador, o Laravel entende isso automáticamente.
+Route::get('/test/{p1}/{p2}', 'App\Http\Controllers\TestController@main')->name('site.test');
 
 /**
  * Essa rota terá 4 parametros, sendo elas:
