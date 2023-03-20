@@ -72,6 +72,11 @@ Route::get(
   }
 )->name('site.rota2');
 
+/** Usando a função fallback, caso a rota não existe, aparecera uma mensagem avisando que essa rota não existe. */
+Route::fallback(function () {
+  echo 'A rota acessada não existe. <a href="' . route("site.main") . '">Clique aqui</a> para acessar a página principal';
+});
+
 /**
  * Essa rota terá 4 parametros, sendo elas:
  * [name, category, subject, message]
