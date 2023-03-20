@@ -15,4 +15,7 @@ npm-debug.log
 yarn-error.log
 /.fleet
 /.idea
-/.vscode
+
+# ignorando TUDO da pasta '.vscode/' exceto o 'extensions.json'
+/.vscode/*.*
+!/.vscode/extensions.*
