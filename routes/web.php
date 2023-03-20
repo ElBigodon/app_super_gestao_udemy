@@ -13,11 +13,38 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/* Essa são as rotas principais do projeto, nas quais a aula se baseia*/
 Route::get('/', 'App\Http\Controllers\MainController@main');
 
 Route::get('/sobre', 'App\Http\Controllers\AboutController@about');
 
 Route::get('/contato', 'App\Http\Controllers\ContactController@contact');
+
+
+// Agrupando rotas usando um prefixo.
+Route::prefix('/app')->group(function () {
+
+  Route::get('/login', function () {
+
+  }
+  );
+
+  Route::get('/clientes', function () {
+
+  }
+  );
+
+  Route::get('/fornecedores', function () {
+
+  }
+  );
+
+  Route::get('/produtos', function () {
+
+  }
+  );
+});
+
 
 /**
  * Essa rota terá 4 parametros, sendo elas:
@@ -47,13 +74,9 @@ Route::get('/contato', 'App\Http\Controllers\ContactController@contact');
  *
  *           Rota ↓              ↓ Parametros ↓                ↓ Função (Callback)
  */
-Route::get('/contato/{name}/{category}/{subject}/{message?}', function (
-  string $name, // Variável
-  string $category,
-  string $subject,
-  string $message = 'Mensagem não foi informada.' // Variável com valor padrão
-)
-{
+Route::get('/contato/{name}/{category}/{subject}/{message?}', function (string $name, // Variável
+  string $category, string $subject, string $message = 'Mensagem não foi informada.' // Variável com valor padrão
+) {
   return "Olá $name, sobre o seu assunto: '$subject', com a sua mensagem: '$message' estaremos passando para o setor $category";
 });
 
@@ -69,45 +92,43 @@ Route::get('/contato/{name}/{category}/{subject}/{message?}', function (
  *
  * Caso você queira saber os formatos, veja: https://www.alura.com.br/artigos/convencoes-nomenclatura-camel-pascal-kebab-snake-case.
  */
-Route::get('/contato/{name}/{categoryId}', function (
-  string $name,
-  int $categoryId,
+Route::get(
+  '/contato/{name}/{categoryId}',
+  function (string $name, int $categoryId, ) {
+    return "$name - $categoryId";
+  }
 )
-{
-  return "$name - $categoryId";
-}
-)
-/**
-  * Aqui estarei chamando uma função `where()`, aonde o primeiro paramêtro será:
-  *
-  *                  mesma coisa que [A-Za-z0-9_], de a-z ignorando diminutivo ou aumentativo e de 0-9 e pode ter _.
-  *                  ↓
-  * Expressão será: \w+
-  *                   ↑
-  *                   Essa expressão delimita que o valor pode se repetir várias vezes, exemplo: abbacaawz...
-  *                   ↓
-  *                    ↘ → Caso não ô adicione ele ira pegar o primeiro caracter, Ex: (a)b34w5z7c90
-  */
+  /**
+   * Aqui estarei chamando uma função `where()`, aonde o primeiro paramêtro será:
+   *
+   *                  mesma coisa que [A-Za-z0-9_], de a-z ignorando diminutivo ou aumentativo e de 0-9 e pode ter _.
+   *                  ↓
+   * Expressão será: \w+
+   *                   ↑
+   *                   Essa expressão delimita que o valor pode se repetir várias vezes, exemplo: abbacaawz...
+   *                   ↓
+   *                    ↘ → Caso não ô adicione ele ira pegar o primeiro caracter, Ex: (a)b34w5z7c90
+   */
   ->where('name', '\w+')
   /*
-  * Aqui mesma mesma coisa, porém usando outra expressão:
-  *
-  * a rota, neste caso a rota é obrigatório cujo o nome é 'categoryId'.
-  *
-  * Segundo paramêtro é o REGEX, neste caso eu quero que o ID seja apenas número
-  *
-  *                  mesma coisa que [0-9], de 0 à 9 (/contato/bigode/1) ou (/contato/bigode/2)...
-  *                  ↓
-  * Expressão será: \d+
-  *                   ↑
-  *                   Aqui está novamente a expressão de 'repetição'
-  */
+   * Aqui mesma mesma coisa, porém usando outra expressão:
+   *
+   * a rota, neste caso a rota é obrigatório cujo o nome é 'categoryId'.
+   *
+   * Segundo paramêtro é o REGEX, neste caso eu quero que o ID seja apenas número
+   *
+   *                  mesma coisa que [0-9], de 0 à 9 (/contato/bigode/1) ou (/contato/bigode/2)...
+   *                  ↓
+   * Expressão será: \d+
+   *                   ↑
+   *                   Aqui está novamente a expressão de 'repetição'
+   */
   ->where('categoryId', '\d+');
-  /*
-  * Você pode aprender sobre REGEX usando o próprio site do PHP (Porém achei bem memes) ou usando um site que gosto bastante;
-  * Referências:
-  *
-  * PHP: https://www.php.net/manual/en/reference.pcre.pattern.syntax.php;
-  *
-  * Regex101: https://regex101.com/
+/*
+ * Você pode aprender sobre REGEX usando o próprio site do PHP (Porém achei bem memes) ou usando um site que gosto bastante;
+ * Referências:
+ *
+ * PHP: https://www.php.net/manual/en/reference.pcre.pattern.syntax.php;
+ *
+ * Regex101: https://regex101.com/
  */
