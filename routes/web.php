@@ -30,7 +30,6 @@ Route::get(
   }
 )->name('site.login');
 
-
 // Agrupando rotas usando um prefixo.
 Route::prefix('/app')->group(function () {
 
@@ -43,10 +42,8 @@ Route::prefix('/app')->group(function () {
 
   Route::get(
     '/fornecedores',
-    function () {
-
-    }
-  )->name('app.providers');
+    'App\Http\Controllers\ProviderController@main'
+  )->name('app.provider');
 
   Route::get(
     '/produtos',
