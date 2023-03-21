@@ -14,6 +14,11 @@ return new class extends Migration
         Schema::create('contact_sites', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('name', 50);
+            $table->integer('phone');
+            $table->string('email', 50);
+            $table->integer('reason');
+            $table->text('message');
         });
     }
 
